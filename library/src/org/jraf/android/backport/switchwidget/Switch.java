@@ -310,7 +310,7 @@ public class Switch extends CompoundButton {
         final int switchWidth = Math.max(mSwitchMinWidth, maxTextWidth * 2 + mThumbTextPadding * 4 + mTempRect.left + mTempRect.right);
         final int switchHeight = mTrackDrawable.getIntrinsicHeight();
 
-        mThumbWidth = maxTextWidth + mThumbTextPadding * 2;
+        mThumbWidth = mThumbDrawable.getIntrinsicWidth() / (int) Math.ceil(mTextPaint.density);
 
         mSwitchWidth = switchWidth;
         mSwitchHeight = switchHeight;
@@ -558,7 +558,9 @@ public class Switch extends CompoundButton {
 
         final Layout switchText = getTargetCheckedState() ? mOnLayout : mOffLayout;
 
-        canvas.translate((thumbLeft + thumbRight) / 2 - switchText.getWidth() / 2, (switchInnerTop + switchInnerBottom) / 2 - switchText.getHeight() / 2);
+        float dx = (thumbRight+switchRight)/2 - switchText.getWidth()/2;
+        if (getTargetCheckedState()) dx = switchLeft+thumbLeft/2 - switchText.getWidth()/2;
+        canvas.translate(dx, (switchInnerTop + switchInnerBottom) / 2 - switchText.getHeight() / 2);
         switchText.draw(canvas);
 
         canvas.restore();
