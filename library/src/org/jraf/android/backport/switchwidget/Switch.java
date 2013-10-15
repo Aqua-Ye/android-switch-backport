@@ -298,10 +298,10 @@ public class Switch extends CompoundButton {
     @Override
     @SuppressLint("NewApi")
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (mOnLayout == null) {
+        if (mOnLayout == null || isLayoutRequested()) {
             mOnLayout = makeLayout(mTextOn);
         }
-        if (mOffLayout == null) {
+        if (mOffLayout == null || isLayoutRequested()) {
             mOffLayout = makeLayout(mTextOff);
         }
 
