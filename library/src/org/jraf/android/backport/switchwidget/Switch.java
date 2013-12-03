@@ -530,7 +530,7 @@ public class Switch extends CompoundButton {
         final int switchRight = mSwitchRight;
         final int switchBottom = mSwitchBottom;
 
-        mTrackDrawable.setBounds(switchLeft, switchTop, switchRight, switchBottom);
+        mTrackDrawable.setBounds(switchLeft, switchTop+getPaddingTop(), switchRight, switchBottom-getPaddingBottom());
         mTrackDrawable.draw(canvas);
 
         canvas.save();
