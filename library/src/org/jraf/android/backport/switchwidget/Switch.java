@@ -560,7 +560,8 @@ public class Switch extends CompoundButton {
 
         float dx = (thumbRight+switchRight)/2 - switchText.getWidth()/2;
         if (getTargetCheckedState()) dx = switchLeft+thumbLeft/2 - switchText.getWidth()/2;
-        canvas.translate(dx, (switchInnerTop + switchInnerBottom) / 2 - switchText.getHeight() / 2);
+        float dy = (switchInnerTop + switchInnerBottom) / 2 - switchText.getHeight() / 2;
+        canvas.translate(dx, dy);
         switchText.draw(canvas);
 
         canvas.restore();
